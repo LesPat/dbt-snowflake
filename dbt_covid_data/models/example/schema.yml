@@ -1,0 +1,18 @@
+version: 2
+
+sources:
+  - name: raw
+    database: DBT_PROJECT_DB
+    schema: RAW
+    tables:
+      - name: DBT_COVID_DATA_RAW
+
+models:
+  - name: dbt_covid_model
+    description: "Covid data transformation"
+    columns:
+      - name: country
+        description: "The primary key for this table"
+        tests:
+          - unique
+          - not_null

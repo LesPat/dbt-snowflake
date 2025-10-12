@@ -1,0 +1,42 @@
+version: "3.9"
+
+services:
+  airflow:
+    build:
+      context: ./data_extraction_dag
+      dockerfile: Dockerfile
+    container_name: airflow
+    environment:
+      - AIRFLOW__CORE__EXECUTOR=SequentialExecutor
+      - AIRFLOW__CORE__LOAD_EXAMPLES=False
+      - AIRFLOW__WEBSERVER__EXPOSE_CONFIG=True
+      - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=sqlite:////opt/airflow/airflow.db
+      - PYTHONPATH=/opt/airflow/dags
+    volumes:
+      - ./data_extraction_dag:/opt/airflow/dags
+    ports:
+      - "8080:8080"
+    command: >
+      bash -c "airflow db init &&
+               airflow users create --username admin --password admin
+               --firstname Admin --lastname User --role Admin --email admin@example.com &&
+               airflow webserver & airflow scheduler"
+    networks:
+      - data_net
+
+  dbt:
+    build:
+      context: ./dbt_covid_data
+      dockerfile: Dockerfile
+    container_name: dbt
+    working_dir: /usr/app
+    volumes:
+      - ./dbt_covid_data:/usr/app
+    depends_on:
+      - airflow
+    networks:
+      - data_net
+
+networks:
+  data_net:
+    driver: bridge
