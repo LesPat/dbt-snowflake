@@ -1,0 +1,8 @@
+airflow==3.1.0
+snowflake.connector==3.18.0
+dbt==1.10.13
+airflow.operators
+sys
+requests
+json
+datetime
