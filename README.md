@@ -2,4 +2,4 @@ Project description: a simple dbt data ingestion setup with Snowflake as a stora
 
 Project consists of two main folders: dbt model and data extractor running on Airflow daily ingesting data to Snowflake, dbt then runs model with SQL transformations saving the results back to Snowflake as business-data ready table
 
-dbt uses Snowflake connector
+dbt uses Snowflake connector to perform data transformation within the dbt model
