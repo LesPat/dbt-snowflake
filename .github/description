@@ -1,0 +1,1 @@
+Daily COVID-19 ELT pipeline: Airflow loads disease.sh data into Snowflake; dbt models analytics-ready tables.
