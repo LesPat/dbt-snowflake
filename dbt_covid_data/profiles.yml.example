@@ -1,0 +1,19 @@
+# Copy to ~/.dbt/profiles.yml (or profiles.yml in this directory for Docker)
+# and replace placeholder values with your Snowflake account details.
+#
+#   cp profiles.yml.example ~/.dbt/profiles.yml
+
+dbt_covid_data:
+  target: dev
+  outputs:
+    dev:
+      type: snowflake
+      account: "<account_identifier>"       # e.g. xy12345.us-east-1
+      user: "<username>"
+      password: "<password>"                # prefer env_var or key pair auth in production
+      role: "<role>"
+      database: "<analytics_database>"      # where dbt builds models
+      warehouse: "<warehouse>"
+      schema: "<analytics_schema>"          # default schema for model objects
+      threads: 4
+      client_session_keep_alive: false
