@@ -1,6 +1,6 @@
 # COVID-19 Data Pipeline (Airflow + dbt + Snowflake)
 
-A daily ELT pipeline that ingests country-level COVID-19 statistics from the [disease.sh API](https://disease.sh/), loads raw JSON into Snowflake, and transforms it into analytics-ready tables with [dbt](https://www.getdbt.com/).
+Project description: A daily ELT pipeline that ingests country-level COVID-19 statistics from the [disease.sh API](https://disease.sh/), loads raw JSON into Snowflake, and transforms it into analytics-ready tables with [dbt](https://www.getdbt.com/).
 
 ## Overview
 
